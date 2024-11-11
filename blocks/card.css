@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.card__like-btn:hover {
+    opacity: 1;
+}
+
 .card__title {
     font-size: 20px;
     font-weight: 500;
