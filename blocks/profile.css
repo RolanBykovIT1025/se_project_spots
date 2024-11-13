@@ -26,8 +26,8 @@
     line-height: 32px;
     max-width: 420px;
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
+    display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
@@ -40,8 +40,8 @@
     line-height: 16px;
     max-width: 420px;
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
+    display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }

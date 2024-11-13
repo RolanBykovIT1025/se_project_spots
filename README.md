@@ -28,4 +28,4 @@ https://drive.google.com/file/d/1goAGpzLrwQjnAdwDUD3K6KsiuRQPuzhx/view?usp=drive
 
 ## github link 
 
-git@github.com:RolanBykovIT1025/se_project_spots.git
+https://github.com/RolanBykovIT1025/se_project_spots
