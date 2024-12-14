@@ -39,13 +39,15 @@ const initialCards = [
   const cardsList = document.querySelector(".cards__list");
 
   function getCardElement(data) {
-    const cardElement = cardTemplate.textContent
+    const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
 
     const cardNameEl = cardElement.querySelector(".card__title");
-
     cardNameEl.textContent = data.name;
+
+    const cardImageEl = cardElement.querySelector(".card__image");
+    cardImageEl.src = data.link;
 
     return cardElement;
   }
