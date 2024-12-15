@@ -13,15 +13,15 @@ const initialCards = [
     },
     {
       name: "A very long bridge, over the forest and through the trees",
-      link: "https://example.com/colosseum.jpg"
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg"
     },
     {
       name: "Tunnel with morning light",
-      link: "https://example.com/machu-picchu.jpg"
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg"
     },
     {
       name: "Mountain house",
-      link: "https://example.com/pyramids-of-giza.jpg"
+      link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg"
     }
   ];
 
@@ -55,11 +55,11 @@ const initialCards = [
   function openModal() {
     editModalNameInput.value = profileName.textContent;
     editModalDescriptionInput.value = profileDescription.textContent;
-    editModal.classList.add("modal__opened");
+    editModal.classList.add("modal_opened");
   }
 
   function closeModal() {
-    editModal.classList.remove("modal__opened");
+    editModal.classList.remove("modal_opened");
   }
 
   function handleEditFormSubmit(evt) {
