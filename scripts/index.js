@@ -60,14 +60,14 @@ const initialCards = [
     return cardElement;
   }
 
-  function openModal() {
-    fillProfileForm(editModalNameInput, profileName.textContent);
-    fillProfileForm(editModalDescriptionInput, profileDescription.textContent);
-    editModal.classList.add("modal_opened");
+  function fillProfileForm() {
+    editModalNameInput.value = profileName.textContent;
+    editModalDescriptionInput.value = profileDescription.textContent;
   }
-
-  function fillProfileForm(modal, textContent) {
-    modal.value = textContent;
+  
+  function openModal() {
+    fillProfileForm();
+    editModal.classList.add("modal_opened");
   }
 
   function closeModal() {
