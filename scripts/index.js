@@ -65,7 +65,6 @@ const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 const cardElement = cardTemplate.content;
-const cardLikeBtn = cardElement.querySelector(".card__like-btn");
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
@@ -87,6 +86,14 @@ function getCardElement(data) {
   const cardImageEl = element.querySelector(".card__image");
   const closeModalBtn = document.querySelector(".modal__close_type_preview");
 
+  const cardLikeBtn = element.querySelector(".card__like-btn");
+
+  //select the element
+  //add the event listener
+  cardLikeBtn.addEventListener("click", () => {
+    // write code that handles the event
+    cardLikeBtn.classList.toggle("card__like-btn_liked");
+  });
   // TODO - select the delete button
 
   cardNameEl.textContent = data.name;
@@ -106,7 +113,7 @@ function getCardElement(data) {
 
   // TODO - set the listener on delete button
   // The handler should remove the card from the DOM
-  
+
   return element;
 }
 
@@ -149,13 +156,6 @@ cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
 });
 
-//select the element
-//add the event listener
-cardLikeBtn.addEventListener("click", () => {
-  // write code that handles the event
-  cardLikeBtn.classList.toggle("card__like-btn_liked");
-});
-
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
@@ -165,8 +165,6 @@ cardForm.addEventListener("submit", handleAddCardSubmit);
 // }
 
 initialCards.forEach((item, i, arr) => {
-  console.log(i);
-  console.log(arr);
   const card = getCardElement(item);
   cardsList.prepend(card);
 });
