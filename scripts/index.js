@@ -104,7 +104,7 @@ function getCardElement(data) {
     openModal(previewModal);
     previewModalImageEl.src = data.link;
     previewModalImageEl.alt = data.alt;
-    previewModalImageEl.textContent = data.name;
+    previewModalCaptionEl.textContent = data.name;
   });
 
   closeModalBtn.addEventListener("click", () => {
