@@ -28,6 +28,15 @@
     opacity: 1;
 }
 
+.card__like-btn_liked {
+    background-image: url("../images/like-icon-liked.svg");
+    opacity: 1;
+}
+
+.card__like-btn_liked:hover {
+    background-image: url("../images/like-icon-liked-hover.svg");    
+}
+
 .card__title {
     font-size: 20px;
     font-weight: 500;
