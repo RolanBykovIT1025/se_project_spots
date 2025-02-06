@@ -19,33 +19,30 @@
 
 .modal__card {
     background-color: #fff;
+    max-width: 730px;
+    width: 100%;
 }
 
 .modal__container {
-    max-width: 730px;
     padding: 32px 50px;
     position: relative;
     border-radius: 8px;
-    width: 100%;
     box-sizing: border-box;
 }
 
 .modal__container_type_preview {
     padding: 0;
-    width: 446.43px;
-    height: 661px;
     top: 81px;
 }
 
 .modal__image {
-    width: 100%;
     border-radius: 8px;
+    max-height: 661px;
 }
 
 .modal__close-btn {
     border: none;
     position: absolute;
-    right: 50px;
     width: 40px;
     height: 40px;
     cursor: pointer;
