@@ -17,8 +17,11 @@
     visibility: visible;
 }
 
-.modal__container {
+.modal__card {
     background-color: #fff;
+}
+
+.modal__container {
     max-width: 730px;
     padding: 32px 50px;
     position: relative;
@@ -56,6 +59,15 @@
     background-color: transparent;
     /* TODO - Finish styling previewModal */
     /* TODO- Make previewModal responsive */ 
+}
+
+.modal__caption {
+    top: 750px;
+    left: 497px;
+    border-radius: 8px;
+    background-color: #212121;
+    color: white;
+    display: inline-block;
 }
 
 .modal__close_form {
