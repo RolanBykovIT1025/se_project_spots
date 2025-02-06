@@ -85,6 +85,7 @@ function getCardElement(data) {
   const element = cardElement.querySelector(".card").cloneNode(true);
   const cardNameEl = element.querySelector(".card__title");
   const cardImageEl = element.querySelector(".card__image");
+  const closeModalBtn = document.querySelector(".modal__close_type_preview");
 
   // TODO - select the delete button
 
@@ -99,8 +100,13 @@ function getCardElement(data) {
     previewModalImageEl.textContent = data.name;
   });
 
+  closeModalBtn.addEventListener("click", () => {
+    closeModal(previewModal);
+  });
+
   // TODO - set the listener on delete button
   // The handler should remove the card from the DOM
+  
   return element;
 }
 
@@ -149,7 +155,6 @@ cardLikeBtn.addEventListener("click", () => {
   // write code that handles the event
   cardLikeBtn.classList.toggle("card__like-btn_liked");
 });
-
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
