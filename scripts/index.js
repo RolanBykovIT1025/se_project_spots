@@ -66,6 +66,8 @@ const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 const cardElement = cardTemplate.content;
 
+let cardNumber = 0;
+
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
@@ -85,6 +87,8 @@ function getCardElement(data) {
   const cardNameEl = element.querySelector(".card__title");
   const cardImageEl = element.querySelector(".card__image");
   const closeModalBtn = document.querySelector(".modal__close_type_preview");
+  element.id =  `card${cardNumber}`;
+  
 
   const cardLikeBtn = element.querySelector(".card__like-btn");
 
@@ -94,7 +98,15 @@ function getCardElement(data) {
     // write code that handles the event
     cardLikeBtn.classList.toggle("card__like-btn_liked");
   });
+  
   // TODO - select the delete button
+  const cardDeleteBtn = element.querySelector(".card__delete-btn");
+  cardDeleteBtn.id = cardNumber;
+  cardDeleteBtn.addEventListener("click", function(event) {
+    const cardId = `#card${event.target.id}`;
+    const cardToDelete = document.querySelector(cardId);
+    cardToDelete.remove();
+  });
 
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
@@ -111,6 +123,7 @@ function getCardElement(data) {
     closeModal(previewModal);
   });
 
+  cardNumber++;
   // TODO - set the listener on delete button
   // The handler should remove the card from the DOM
 

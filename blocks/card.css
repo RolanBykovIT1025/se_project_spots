@@ -38,14 +38,17 @@
     background-image: url("../images/like-icon-liked-hover.svg");    
 }
 
+.card__container {
+    position: relative;
+}
+
 .card__delete-btn {
     background-image: url("../images/Delete\ Icon.svg");
     height: 32px;
     width: 32px;
     right: 10px;
-    top: 50px;
-    left: 371px;
-    position: relative;
+    top: 10px;
+    position: absolute;
     border: none;
     background-color: transparent;
     background-size: cover;

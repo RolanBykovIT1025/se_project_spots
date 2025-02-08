@@ -37,8 +37,10 @@
           <ul class="cards__list">
             <template id="card-template">
               <li class="card">
-                <button class="card__delete-btn"></button>
-                <img src="" alt="" class="card__image" />
+                <div class="card__container">
+                  <img src="" alt="" class="card__image"/>
+                  <button class="card__delete-btn"></button>
+                </div>
                 <div class="card__footer">
                   <h2 class="card__title"></h2>
                   <button type="button" class="card__like-btn"></button>
@@ -54,7 +56,10 @@
       <div class="modal" id="edit-modal">
         <!-- Edit profile pop-up -->
         <div class="modal__container modal__card">
-          <button type="button" class="modal__close-btn modal__close_form"></button>
+          <button
+            type="button"
+            class="modal__close-btn modal__close_form"
+          ></button>
           <h2 class="modal__title">Edit profile</h2>
           <form name="edit-profile" class="modal__form">
             <label for="profile-name-input" class="modal__label">
@@ -83,7 +88,10 @@
       <div class="modal" id="add-card-modal">
         <!-- Add profile pop-up -->
         <div class="modal__container modal__card">
-          <button type="button" class="modal__close-btn modal__close_form"></button>
+          <button
+            type="button"
+            class="modal__close-btn modal__close_form"
+          ></button>
           <h2 class="modal__title">New Post</h2>
           <form name="add-card" class="modal__form">
             <label for="add-card-link-input" class="modal__label">
@@ -111,9 +119,13 @@
 
       <div class="modal" id="preview-modal">
         <div class="modal__container modal__container_type_preview">
-          <img class="modal__image" src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg" alt="">
+          <img
+            class="modal__image"
+            src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"
+            alt=""
+          />
           <button class="modal__close_type_preview modal__close-btn"></button>
-          <br /> 
+          <br />
           <p class="modal__caption"></p>
         </div>
       </div>
