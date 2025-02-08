@@ -4,6 +4,7 @@
     object-fit: 100%;
     display: block;
     border-radius: 8px;
+    position: relative;
 }
 
 .card__content {
@@ -35,6 +36,24 @@
 
 .card__like-btn_liked:hover {
     background-image: url("../images/like-icon-liked-hover.svg");    
+}
+
+.card__delete-btn {
+    background-image: url("../images/Delete\ Icon.svg");
+    height: 32px;
+    width: 32px;
+    right: 10px;
+    top: 50px;
+    left: 371px;
+    position: relative;
+    border: none;
+    background-color: transparent;
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.card__delete-btn:hover {
+    background-color: rgb(248, 65, 65);
 }
 
 .card__title {
