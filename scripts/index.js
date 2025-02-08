@@ -67,15 +67,14 @@ const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 const cardElement = cardTemplate.content;
 
-function handleAddCardSubmit(evt) {
+function handleAddCardSubmit(evt, item, method = "prepend") {
   evt.preventDefault();
 
   // TODO - make image appear when adding card
-  const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  const cardEl = getCardElement(inputValues);
+  const cardEl = getCardElement(item);
 
   // TODO - make sure card appears at top of the list
-  cardsList.prepend(cardEl);
+  cardsList[ method ](cardEl);
 
   evt.target.reset();
   // TODO - Close the modal
@@ -148,7 +147,7 @@ cardModalBtn.addEventListener("click", () => {
   openModal(cardModal);
 });
 
-const closeButtons = document.querySelectorAll('.modal__close');
+const closeButtons = document.querySelectorAll('.modal__close-btn');
 
 closeButtons.forEach((button) => {
   // Find the closest popup only once
@@ -158,7 +157,10 @@ closeButtons.forEach((button) => {
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
-cardForm.addEventListener("submit", handleAddCardSubmit);
+cardForm.addEventListener("submit", () => {
+  const item = { name: cardNameInput.value, link: cardLinkInput.value };
+  handleAddCardSubmit(evt, item);
+}); 
 
 // for (let i = 0; i < initialCards.length; i++) {
 //   const cardElement = getCardElement(initialCards[i]);
