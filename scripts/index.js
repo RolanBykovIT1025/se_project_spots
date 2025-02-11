@@ -45,14 +45,14 @@ const profileDescription = document.querySelector(".profile__description");
 // Form elements
 const editModal = document.querySelector("#edit-modal");
 const editFormElement = document.forms["edit-profile"];
-const editModalCloseButton = editModal.querySelector(".modal__close-btn");
+const editModalCloseButton = editModal.querySelector(".modal__close_btn");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector("#profile-description-input");
 
 // Card Elements
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form");
-const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
+const cardModalCloseBtn = cardModal.querySelector(".modal__close_btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 
@@ -60,7 +60,7 @@ const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
-const closeModalBtn = document.querySelector(".modal__close_type_preview");
+const closeModalBtn = document.querySelector(".modal__close_btn-preview");
 
 // Card related elements
 const cardTemplate = document.querySelector("#card-template");
@@ -145,7 +145,7 @@ cardModalBtn.addEventListener("click", () => {
   openModal(cardModal);
 });
 
-const closeButtons = document.querySelectorAll('.modal__close-btn');
+const closeButtons = document.querySelectorAll('.modal__close_btn');
 
 closeButtons.forEach((button) => {
   // Find the closest popup only once

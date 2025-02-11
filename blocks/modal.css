@@ -41,7 +41,7 @@
     max-height: 661px;
 }
 
-.modal__close-btn {
+.modal__close_btn {
     border: none;
     position: absolute;
     width: 40px;
@@ -49,11 +49,11 @@
     cursor: pointer;
 }
 
-.modal__close-btn:hover {
+.modal__close_btn:hover {
     opacity: 1;
 }
 
-.modal__close_type_preview {
+.modal__close_btn-preview {
     background-image:url("../images/close-light.svg");
     top: 0;
     right: -52.5px;
@@ -74,7 +74,7 @@
     padding: 5px;
 }
 
-.modal__close_form {
+.modal__close_btn-form {
     background-image: url("../images/close-icon.svg");
     background-color: #fff;
     top: 32px;
@@ -141,8 +141,8 @@
         margin: 10px 0 34px;
     }
 
-    .modal__close-btn {
-        top: 12px;
+    .modal__close_btn {
+        top: -25px;
         right: 12px;
         position: absolute;
     }
@@ -154,12 +154,22 @@
     .modal__submit-btn {
         width: 100%;
     }
+
+    .modal__image {
+        width: 264px;
+    }
+
+    .modal__caption {
+        font-size: 16px;
+    }
+
+    
 }
 
 
 @media screen and (max-width: 320px) {
-    .modal {
-        padding: 0 10px;
+    .modal__container {
+
     }
 
 }    
