@@ -35,6 +35,7 @@ const initialCards = [
     alt: "Golden Gate Bridge",
   },
 ];
+
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
@@ -46,10 +47,9 @@ const editModal = document.querySelector("#edit-modal");
 const editFormElement = document.forms["edit-profile"];
 const editModalCloseButton = editModal.querySelector(".modal__close-btn");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
-const editModalDescriptionInput = editModal.querySelector(
-  "#profile-description-input"
-);
+const editModalDescriptionInput = editModal.querySelector("#profile-description-input");
 
+// Card Elements
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
@@ -67,8 +67,7 @@ const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 const cardElement = cardTemplate.content;
 
-function handleAddCardSubmit(evt, item, method = "prepend") {
-  evt.preventDefault();
+function handleAddCardSubmit(item, method = "prepend") {
 
   // TODO - make image appear when adding card
   const cardEl = getCardElement(item);
@@ -76,7 +75,6 @@ function handleAddCardSubmit(evt, item, method = "prepend") {
   // TODO - make sure card appears at top of the list
   cardsList[ method ](cardEl);
 
-  evt.target.reset();
   // TODO - Close the modal
   closeModal(cardModal);
 }
@@ -157,9 +155,11 @@ closeButtons.forEach((button) => {
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
-cardForm.addEventListener("submit", () => {
+cardForm.addEventListener("submit", function(evt) {
   const item = { name: cardNameInput.value, link: cardLinkInput.value };
-  handleAddCardSubmit(evt, item);
+  handleAddCardSubmit(item);
+  evt.preventDefault();
+  evt.target.reset();
 }); 
 
 // for (let i = 0; i < initialCards.length; i++) {
