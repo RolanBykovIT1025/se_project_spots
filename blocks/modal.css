@@ -31,7 +31,7 @@
   transform: translate(-50%);
 }
 
-.modal__container_type_preview {
+.modal__container-type_preview {
   padding: 0;
   top: 81px;
 }
@@ -41,7 +41,7 @@
   max-height: 661px;
 }
 
-.modal__close_btn {
+.modal__close-btn {
   border: none;
   position: absolute;
   width: 40px;
@@ -49,11 +49,11 @@
   cursor: pointer;
 }
 
-.modal__close_btn:hover {
+.modal__close-btn:hover {
   opacity: 1;
 }
 
-.modal__close_btn-preview {
+.modal__close-btn_preview {
   background-image: url("../images/close-light.svg");
   top: 0;
   right: -52.5px;
@@ -70,11 +70,13 @@
   display: inline-block;
   position: relative;
   bottom: 15px;
-  font-size: 21px;
+  font-size: 20px;
+  line-height: 24px;
   padding: 5px;
+  font-weight: 500;
 }
 
-.modal__close_btn-form {
+.modal__close-btn_modal_form {
   background-image: url("../images/close-icon.svg");
   background-color: #fff;
   top: 32px;
@@ -103,6 +105,7 @@
   line-height: 16px;
   font-weight: 500;
   font-size: 16px;
+  border-color: #212121;
 }
 
 .modal__input::placeholder {
@@ -147,7 +150,7 @@
     margin: 10px 0 34px;
   }
 
-  .modal__close_btn-preview {
+  .modal__close-btn_preview {
     top: 15px;
     right: 12px;
     position: absolute;
@@ -180,6 +183,8 @@
   .modal__caption {
     font-size: 16px;
     bottom: 0;
+    font-weight: 500;
+    line-height: 19.2px;
   }
 
   .modal__card {
@@ -191,12 +196,12 @@
     width: 100%;
   }
 
-  .modal__close_btn-form {
+  .modal__close-btn_modal_form {
     right: 5px;
     top: 5px;
   }
 
-  .modal__close_btn-preview {
+  .modal__close-btn_preview {
     right: 0;
     float: right;
     position: relative;
