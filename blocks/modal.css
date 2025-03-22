@@ -144,6 +144,13 @@
   opacity: 0.8;
 }
 
+.modal__button_disabled {
+  background-color:#212121;
+  opacity: 50%;
+  color: #7f7f7f;
+  cursor: not-allowed;
+}
+
 @media screen and (max-width: 627px) and (min-width: 321px) {
   .modal {
     padding: 0 10px;
