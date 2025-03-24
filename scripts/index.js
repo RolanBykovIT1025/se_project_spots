@@ -1,3 +1,12 @@
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-btn",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible"
+  };
+
 const initialCards = [
   {
     name: "Val Thorens",
@@ -71,7 +80,7 @@ const cardElement = cardTemplate.content;
 function handleAddCardSubmit(item, method = "prepend") {
   const cardEl = getCardElement(item);
   cardsList[method](cardEl);
-  disableButton(cardSubmitBtn);
+  disableButton(cardSubmitBtn, settings);
   closeModal(cardModal);
   // Move the reset to be the last operation
   setTimeout(() => {
@@ -129,6 +138,29 @@ function handleEditFormSubmit(evt) {
   closeModal(editModal);
 }
 
+function closeModalOnOverlayClick(evt) {
+  if (evt.target === evt.currentTarget) {
+      closeModal(evt.target);
+  }
+ }
+
+ const allModals = document.querySelectorAll(".modal")
+
+ allModals.forEach((modal) => {
+  modal.addEventListener("click", closeModalOnOverlayClick);
+});
+
+function closeModalOnEscape(evt) {
+  if (evt.key === 'Escape') {
+      const openModal = document.querySelector('.modal_opened');
+      if (openModal) {
+          closeModal(openModal);
+      }
+  }
+}
+
+  document.addEventListener('keydown', closeModalOnEscape);
+
 profileEditButton.addEventListener("click", () => {
   fillProfileForm();
   openModal(editModal);
@@ -161,3 +193,5 @@ initialCards.forEach((item, i, arr) => {
   const card = getCardElement(item);
   cardsList.prepend(card);
 });
+
+enableValidation(settings);
