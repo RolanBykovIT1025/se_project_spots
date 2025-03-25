@@ -29,7 +29,6 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonEl, settings) => {
     if (hasInvalidInput(inputList)) {
         disableButton(buttonEl, settings);
-        buttonEl.classList.add(settings.inactiveButtonClass);
     } else {
         buttonEl.disabled = false;
         buttonEl.classList.remove(settings.inactiveButtonClass);
@@ -38,13 +37,28 @@ const toggleButtonState = (inputList, buttonEl, settings) => {
 
 const disableButton = (buttonEl, config) => {
     buttonEl.disabled = true;
+    buttonEl.classList.add(config.inactiveButtonClass);
 }
+
+const resetValidation = (formEl, config) => {
+    const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
+    const buttonElement = formEl.querySelector(config.submitButtonSelector);
+    inputList.forEach((inputElement) => {
+        hideInputError(formEl, inputElement, config);
+    });
+
+    disableButton(buttonElement, config);
+};
 
 const setEventListeners = (formEl, config) => {
     const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
     const buttonElement = formEl.querySelector(config.submitButtonSelector);
     
         toggleButtonState(inputList, buttonElement, config);
+
+    editFormElement.addEventListener("reset", () => {
+        disableButton(buttonElement, config);
+    });
     
     inputList.forEach((inputElement) => {
         inputElement.addEventListener("input", function () {
