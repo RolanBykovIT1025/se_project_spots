@@ -80,9 +80,7 @@ const cardElement = cardTemplate.content;
 function handleAddCardSubmit(item, method = "prepend") {
   const cardEl = getCardElement(item);
   cardsList[method](cardEl);
-  disableButton(cardSubmitBtn, settings);
   closeModal(cardModal);
-  // Move the reset to be the last operation
   setTimeout(() => {
     cardForm.reset();
   }, 100);
@@ -162,6 +160,7 @@ function closeModalOnEscape(evt) {
 }
 
 profileEditButton.addEventListener("click", () => {
+  resetValidation(editFormElement, settings)
   fillProfileForm();
   openModal(editModal);
 });
@@ -183,11 +182,6 @@ cardForm.addEventListener("submit", function(evt) {
   handleAddCardSubmit(item);
   evt.preventDefault();
 }); 
-
-// for (let i = 0; i < initialCards.length; i++) {
-//   const cardElement = getCardElement(initialCards[i]);
-//   cardsList.prepend(cardElement)
-// }
 
 initialCards.forEach((item, i, arr) => {
   const card = getCardElement(item);
