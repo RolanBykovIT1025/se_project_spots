@@ -4,7 +4,7 @@ import {
   resetValidation,
   validationConfig,
 } from "../scripts/validation.js";
-import Api from "../scripts/Api.js";
+import Api from "../utils/Api.js";
 
 // Import the image
 import imagePlus from "../images/plus.svg";
@@ -74,7 +74,8 @@ api.getInitialCards().then((cards) => {
     const card = getCardElement(item);
     cardsList.prepend(card);
   });
-});
+})
+.catch(console.error);
 
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
