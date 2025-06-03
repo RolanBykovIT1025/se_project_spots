@@ -1,5 +1,10 @@
 import "./index.css";
-import { enableValidation, resetValidation, validationConfig } from "../scripts/validation.js";
+import {
+  enableValidation,
+  resetValidation,
+  validationConfig,
+} from "../scripts/validation.js";
+import Api from "../scripts/Api.js";
 
 // Import the image
 import imagePlus from "../images/plus.svg";
@@ -17,7 +22,6 @@ plusImage.src = imagePlus;
 headerImage.src = imageHeader;
 pencilImage.src = imagePencil;
 avatarImage.src = imageAvatar;
-
 
 const initialCards = [
   {
@@ -57,6 +61,21 @@ const initialCards = [
   },
 ];
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "78cc228a-a265-45af-8e57-e7b6402898d4",
+    "Content-Type": "application/json",
+  },
+});
+
+api.getInitialCards().then((cards) => {
+  cards.forEach((item, i, arr) => {
+    const card = getCardElement(item);
+    cardsList.prepend(card);
+  });
+});
+
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
@@ -68,7 +87,9 @@ const editModal = document.querySelector("#edit-modal");
 const editFormElement = document.forms["edit-profile"];
 const editModalCloseButton = editModal.querySelector(".modal__close-btn");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
-const editModalDescriptionInput = editModal.querySelector("#profile-description-input");
+const editModalDescriptionInput = editModal.querySelector(
+  "#profile-description-input"
+);
 
 // Card Elements
 const cardModal = document.querySelector("#add-card-modal");
@@ -135,12 +156,12 @@ function fillProfileForm() {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener('keydown', closeModalOnEscape); // add
+  document.addEventListener("keydown", closeModalOnEscape); // add
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener('keydown', closeModalOnEscape); // remove
+  document.removeEventListener("keydown", closeModalOnEscape); // remove
 }
 
 function handleEditFormSubmit(evt) {
@@ -152,27 +173,27 @@ function handleEditFormSubmit(evt) {
 
 function closeModalOnOverlayClick(evt) {
   if (evt.target === evt.currentTarget) {
-      closeModal(evt.target);
+    closeModal(evt.target);
   }
- }
+}
 
- const allModals = document.querySelectorAll(".modal")
+const allModals = document.querySelectorAll(".modal");
 
- allModals.forEach((modal) => {
+allModals.forEach((modal) => {
   modal.addEventListener("click", closeModalOnOverlayClick);
 });
 
 function closeModalOnEscape(evt) {
-  if (evt.key === 'Escape') {
-      const openModal = document.querySelector('.modal_opened');
-      if (openModal) {
-          closeModal(openModal);
-      }
+  if (evt.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened");
+    if (openModal) {
+      closeModal(openModal);
+    }
   }
 }
 
 profileEditButton.addEventListener("click", () => {
-  resetValidation(editFormElement, validationConfig)
+  resetValidation(editFormElement, validationConfig);
   fillProfileForm();
   openModal(editModal);
 });
@@ -181,23 +202,22 @@ cardModalBtn.addEventListener("click", () => {
   openModal(cardModal);
 });
 
-const closeButtons = document.querySelectorAll('.modal__close-btn');
+const closeButtons = document.querySelectorAll(".modal__close-btn");
 
 closeButtons.forEach((button) => {
-  const modal = button.closest('.modal');
-  button.addEventListener('click', () => closeModal(modal));
+  const modal = button.closest(".modal");
+  button.addEventListener("click", () => closeModal(modal));
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
-cardForm.addEventListener("submit", function(evt) {
-  const item = { name: cardNameInput.value, link: cardLinkInput.value, alt: cardNameInput.value };
+cardForm.addEventListener("submit", function (evt) {
+  const item = {
+    name: cardNameInput.value,
+    link: cardLinkInput.value,
+    alt: cardNameInput.value,
+  };
   handleAddCardSubmit(item);
   evt.preventDefault();
-}); 
-
-initialCards.forEach((item, i, arr) => {
-  const card = getCardElement(item);
-  cardsList.prepend(card);
 });
 
 enableValidation(validationConfig);
