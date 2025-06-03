@@ -69,13 +69,15 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((cards) => {
-  cards.forEach((item, i, arr) => {
-    const card = getCardElement(item);
-    cardsList.prepend(card);
-  });
-})
-.catch(console.error);
+api
+  .getAppInfo()
+  .then(([cards]) => {
+    cards.forEach((item, i, arr) => {
+      const card = getCardElement(item);
+      cardsList.prepend(card);
+    });
+  })
+  .catch(console.error);
 
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-btn");
