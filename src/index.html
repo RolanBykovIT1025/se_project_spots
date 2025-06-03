@@ -6,31 +6,26 @@
     <meta name="author" content="Rolan Bykov" />
     <meta name="description" content="??" />
     <meta name="keywords" content="HTML, CSS, ???" />
-    <link rel="stylesheet" href="pages/index.css" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <title>Spots</title>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spot logo" class="header__logo" />
+        <img id="image-header" alt="Spot logo" class="header__logo" />
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="./images/avatar.jpg"
-            alt="Bessie Coleman"
-            class="profile__avatar"
-          />
+          <img id="image-avatar" alt="Bessie Coleman" class="profile__avatar" />
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
             <button type="button" class="profile__edit-btn">
-              <img src="./images/pencil.svg" alt="pencil icon" /> Edit Profile
+              <img id="image-pencil" alt="pencil icon" /> Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
-            <img src="./images/plus.svg" alt="plus icon" />New Post
+            <img id="image-plus" alt="plus icon" />New Post
           </button>
         </section>
         <section class="cards page__section">
@@ -38,7 +33,7 @@
             <template id="card-template">
               <li class="card">
                 <div class="card__container">
-                  <img src="" alt="" class="card__image" />
+                  <img class="card__image" />
                   <button class="card__delete-btn"></button>
                 </div>
                 <div class="card__footer">
@@ -86,7 +81,10 @@
                 maxlength="200"
                 required
               />
-              <span id="profile-description-input-error" class="modal__error"></span>
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -144,7 +142,5 @@
         </div>
       </div>
     </div>
-    <script defer src="./scripts/validation.js"></script>
-    <script defer src="./scripts/index.js"></script>
   </body>
 </html>

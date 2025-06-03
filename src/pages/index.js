@@ -1,11 +1,23 @@
-const settings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__submit-btn",
-  inactiveButtonClass: "modal__submit-btn_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible"
-  };
+import "./index.css";
+import { enableValidation, resetValidation, validationConfig } from "../scripts/validation.js";
+
+// Import the image
+import imagePlus from "../images/plus.svg";
+import imageHeader from "../images/logo.svg";
+import imagePencil from "../images/pencil.svg";
+import imageAvatar from "../images/avatar.jpg";
+
+// Select the element and set the src
+const plusImage = document.getElementById("image-plus");
+const headerImage = document.getElementById("image-header");
+const pencilImage = document.getElementById("image-pencil");
+const avatarImage = document.getElementById("image-avatar");
+
+plusImage.src = imagePlus;
+headerImage.src = imageHeader;
+pencilImage.src = imagePencil;
+avatarImage.src = imageAvatar;
+
 
 const initialCards = [
   {
@@ -160,7 +172,7 @@ function closeModalOnEscape(evt) {
 }
 
 profileEditButton.addEventListener("click", () => {
-  resetValidation(editFormElement, settings)
+  resetValidation(editFormElement, validationConfig)
   fillProfileForm();
   openModal(editModal);
 });
@@ -188,4 +200,4 @@ initialCards.forEach((item, i, arr) => {
   cardsList.prepend(card);
 });
 
-enableValidation(settings);
+enableValidation(validationConfig);
