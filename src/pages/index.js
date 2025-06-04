@@ -69,13 +69,18 @@ const api = new Api({
   },
 });
 
+// Destructure the second item in the callback of the .then()
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([cards, user]) => {
     cards.forEach((item, i, arr) => {
       const card = getCardElement(item);
       cardsList.prepend(card);
     });
+
+    avatarImage.src = user.avatar;
+    profileName.textContent = user.name;
+    profileDescription.textContent = user.about;
   })
   .catch(console.error);
 
@@ -169,9 +174,17 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 function closeModalOnOverlayClick(evt) {
