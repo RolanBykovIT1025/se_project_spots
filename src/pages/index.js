@@ -23,43 +23,43 @@ headerImage.src = imageHeader;
 pencilImage.src = imagePencil;
 avatarImage.src = imageAvatar;
 
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-    alt: "Val Thorens",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-    alt: "Restaurant terrace",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-    alt: "An outdoor cafe",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-    alt: "A very long bridge, over the forest and through the trees",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-    alt: "Tunnel with morning light",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-    alt: "Moutain house",
-  },
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-    alt: "Golden Gate Bridge",
-  },
-];
+// const initialCards = [
+//   {
+//     name: "Val Thorens",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+//     alt: "Val Thorens",
+//   },
+//   {
+//     name: "Restaurant terrace",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
+//     alt: "Restaurant terrace",
+//   },
+//   {
+//     name: "An outdoor cafe",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
+//     alt: "An outdoor cafe",
+//   },
+//   {
+//     name: "A very long bridge, over the forest and through the trees",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
+//     alt: "A very long bridge, over the forest and through the trees",
+//   },
+//   {
+//     name: "Tunnel with morning light",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+//     alt: "Tunnel with morning light",
+//   },
+//   {
+//     name: "Mountain house",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
+//     alt: "Moutain house",
+//   },
+//   {
+//     name: "Golden Gate Bridge",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+//     alt: "Golden Gate Bridge",
+//   },
+// ];
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -177,17 +177,17 @@ function handleDeleteSubmit(evt) {
 
 function handleLike(evt, id) {
   const likeButton = evt.target;
-  const isLiked = likeButton.classList.contains("card__like-btn-liked");
+  const isLiked = likeButton.classList.contains("card__like-btn_liked");
 
-  api.changeLikeStatus(id, !isLiked)
+  api.changeLikeStatus(id, isLiked)
   .then((updatedCard) => {
     
     const likedByUser = updatedCard.isLiked;
 
     if (likedByUser) {
-      likeButton.classList.add("card__like-btn-liked");
+      likeButton.classList.add("card__like-btn_liked");
     } else {
-      likeButton.classList.remove("card__like-btn-liked");
+      likeButton.classList.remove("card__like-btn_liked");
     }
   })
   // remove - evt.target.classlist.toggle("card__like-button_active");
@@ -207,8 +207,9 @@ function getCardElement(data) {
 
   const cardLikeBtn = element.querySelector(".card__like-btn");
 
-// TODO - if the card is liked, set the active class on the card
-
+  if (data.isLiked) {
+    cardLikeBtn.classList.add("card__like-btn_liked");
+  }
 
   cardLikeBtn.addEventListener("click", (evt) => {
     handleLike(evt, data._id);
