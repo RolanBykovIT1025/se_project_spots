@@ -175,6 +175,28 @@ function handleDeleteSubmit(evt) {
     });
 }
 
+function handleLike(evt, id) {
+  const likeButton = evt.target;
+  const isLiked = likeButton.classList.contains("card__like-btn-liked");
+
+  api.changeLikeStatus(id, !isLiked)
+  .then((updatedCard) => {
+    
+    const likedByUser = updatedCard.isLiked;
+
+    if (likedByUser) {
+      likeButton.classList.add("card__like-btn-liked");
+    } else {
+      likeButton.classList.remove("card__like-btn-liked");
+    }
+  })
+  // remove - evt.target.classlist.toggle("card__like-button_active");
+  //1. check whether card is currently liked or not const isLIKED = ???;
+  //2. call the changeLikeStatus method, passing it the appropriate arguments.
+  //3. handle the response (.then and .catch)
+  //4. in the .then, toggle active class 
+}
+
 function getCardElement(data) {
   const element = cardElement.querySelector(".card").cloneNode(true);
 
@@ -185,12 +207,15 @@ function getCardElement(data) {
 
   const cardLikeBtn = element.querySelector(".card__like-btn");
 
-  cardLikeBtn.addEventListener("click", () => {
-    cardLikeBtn.classList.toggle("card__like-btn_liked");
+// TODO - if the card is liked, set the active class on the card
+
+
+  cardLikeBtn.addEventListener("click", (evt) => {
+    handleLike(evt, data._id);
   });
 
   const cardDeleteBtn = element.querySelector(".card__delete-btn");
-  cardDeleteBtn.addEventListener("click", (evt) => {
+  cardDeleteBtn.addEventListener("click", () => {
     selectedCardID = data._id;
     openModal(deleteModal);
   });
