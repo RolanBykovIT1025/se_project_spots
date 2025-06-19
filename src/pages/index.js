@@ -4,6 +4,7 @@ import {
   resetValidation,
   validationConfig,
 } from "../scripts/validation.js";
+import { setButtonText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
 // Import the image
@@ -21,7 +22,7 @@ const avatarImage = document.getElementById("image-avatar");
 plusImage.src = imagePlus;
 headerImage.src = imageHeader;
 pencilImage.src = imagePencil;
-avatarImage.src = imageAvatar;
+// avatarImage.src = imageAvatar;
 
 // const initialCards = [
 //   {
@@ -190,11 +191,6 @@ function handleLike(evt, id) {
       likeButton.classList.remove("card__like-btn_liked");
     }
   })
-  // remove - evt.target.classlist.toggle("card__like-button_active");
-  //1. check whether card is currently liked or not const isLIKED = ???;
-  //2. call the changeLikeStatus method, passing it the appropriate arguments.
-  //3. handle the response (.then and .catch)
-  //4. in the .then, toggle active class 
 }
 
 function getCardElement(data) {
@@ -256,18 +252,31 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+
+  // Change text content to "Saving..."
+  const submitBtn = evt.submitter;
+  // submitBtn.textContent = "Saving...";
+  setButtonText(submitBtnbtn, true, "Save", "Saving...");
+
   api
     .editUserInfo({
       name: editModalNameInput.value,
       about: editModalDescriptionInput.value,
     })
     .then((data) => {
+      // TODO - Use data argument instead of input values
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      // TODO - call setButtonText instead
+      submitBtn.textContent = "Save";
+    });
 }
+
+// TODO - implement loading text for all other form submissions
 
 function closeModalOnOverlayClick(evt) {
   if (evt.target === evt.currentTarget) {
