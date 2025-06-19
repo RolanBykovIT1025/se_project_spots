@@ -1,7 +1,7 @@
 export function setButtonText(btn, isLoading, defualtText = "Save", loadingText = "Saving...") {
     if (isLoading) {
-        //set the loading text
+        btn.innerText = loadingText
     } else {
-        // set the not loading text
+        btn.innerText = defualtText
     }
 }

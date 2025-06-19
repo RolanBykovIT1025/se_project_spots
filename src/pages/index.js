@@ -146,6 +146,10 @@ function handleAddCardSubmit(item, method = "prepend") {
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
   console.log(avatarInput.value);
+
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Save", "Saving...");
+  
   api
     .editAvatarInfo({ avatar: avatarInput.value })
     .then((data) => {
@@ -153,12 +157,19 @@ function handleAvatarSubmit(evt) {
       avatarImage.src = data.avatar;
       closeModal(avatarModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Save", "Saving...");
+    });
 }
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
   console.log("Deleting card with ID:", selectedCardID);
+
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Delete", "Deleting...");
+
   api
     .deleteCard(selectedCardID)
     .then(() => {
@@ -173,6 +184,9 @@ function handleDeleteSubmit(evt) {
     })
     .catch((err) => {
       console.error("Delete failed:", err);
+    })
+    .finally(() => {
+    setButtonText(submitBtn, false, "Delete", "Deleting...");
     });
 }
 
@@ -256,7 +270,7 @@ function handleEditFormSubmit(evt) {
   // Change text content to "Saving..."
   const submitBtn = evt.submitter;
   // submitBtn.textContent = "Saving...";
-  setButtonText(submitBtnbtn, true, "Save", "Saving...");
+  setButtonText(submitBtn, true, "Save", "Saving...");
 
   api
     .editUserInfo({
@@ -272,7 +286,7 @@ function handleEditFormSubmit(evt) {
     .catch(console.error)
     .finally(() => {
       // TODO - call setButtonText instead
-      submitBtn.textContent = "Save";
+      setButtonText(submitBtn, false, "Save", "Saving...");
     });
 }
 
@@ -333,11 +347,17 @@ cardForm.addEventListener("submit", function (evt) {
     alt: cardNameInput.value,
   };
   
+  const submitBtn = evt.submitter;
+  setButtonText(submitBtn, true, "Save", "Saving...");
+
   api.addCard(item)
     .then((newCard) => {
       handleAddCardSubmit(newCard);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, "Save", "Saving...");
+    });
 });
 
 enableValidation(validationConfig);
