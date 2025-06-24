@@ -22,45 +22,6 @@ const avatarImage = document.getElementById("image-avatar");
 plusImage.src = imagePlus;
 headerImage.src = imageHeader;
 pencilImage.src = imagePencil;
-// avatarImage.src = imageAvatar;
-
-// const initialCards = [
-//   {
-//     name: "Val Thorens",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-//     alt: "Val Thorens",
-//   },
-//   {
-//     name: "Restaurant terrace",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-//     alt: "Restaurant terrace",
-//   },
-//   {
-//     name: "An outdoor cafe",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-//     alt: "An outdoor cafe",
-//   },
-//   {
-//     name: "A very long bridge, over the forest and through the trees",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-//     alt: "A very long bridge, over the forest and through the trees",
-//   },
-//   {
-//     name: "Tunnel with morning light",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-//     alt: "Tunnel with morning light",
-//   },
-//   {
-//     name: "Mountain house",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-//     alt: "Moutain house",
-//   },
-//   {
-//     name: "Golden Gate Bridge",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-//     alt: "Golden Gate Bridge",
-//   },
-// ];
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -267,9 +228,7 @@ function closeModal(modal) {
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
 
-  // Change text content to "Saving..."
   const submitBtn = evt.submitter;
-  // submitBtn.textContent = "Saving...";
   setButtonText(submitBtn, true, "Save", "Saving...");
 
   api
@@ -278,19 +237,15 @@ function handleEditFormSubmit(evt) {
       about: editModalDescriptionInput.value,
     })
     .then((data) => {
-      // TODO - Use data argument instead of input values
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
     .catch(console.error)
     .finally(() => {
-      // TODO - call setButtonText instead
       setButtonText(submitBtn, false, "Save", "Saving...");
     });
 }
-
-// TODO - implement loading text for all other form submissions
 
 function closeModalOnOverlayClick(evt) {
   if (evt.target === evt.currentTarget) {

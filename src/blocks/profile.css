@@ -19,7 +19,6 @@
     justify-content: center;
 
     visibility: hidden;
-    /* TODO - avatar button styles */
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
@@ -131,14 +130,12 @@
     }
 
     .profile__avatar-btn {
-        visibility: visible;
+        /* visibility: visible; */
     }
 
     .profile__avatar-btn::after {
         content: "";
     }
-
-    /* TODO - mobile avatar button styles */
 
     .profile__avatar {
         margin: 0 0 12px;

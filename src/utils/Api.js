@@ -4,14 +4,21 @@ class Api {
     this._headers = headers;
   }
 
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
+      return this._checkResponse(res);
+    })
+    .catch((err) => {
+      console.error(`Error fetching user info:`, err);
     });
   }
 
@@ -23,11 +30,11 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
   headers: this._headers,
 }).then((res) => {
-  if (res.ok) {
-    return res.json();
-}
-return Promise.reject(`Error: ${res.status}`);
-  });
+  return this._checkResponse(res);
+  })
+  .catch((err) => {
+      console.error(`Error fetching user info:`, err);
+    });
   }
 
  addCard({ name, link, alt }) {
@@ -40,11 +47,11 @@ return Promise.reject(`Error: ${res.status}`);
       alt
     }),
   }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+    return this._checkResponse(res);
+  })
+  .catch((err) => {
+      console.error(`Error fetching user info:`, err);
+    });
 }
 
   editUserInfo({ name, about }) {
@@ -56,11 +63,11 @@ return Promise.reject(`Error: ${res.status}`);
         about,
       }),
     }).then((res) => {
-  if (res.ok) {
-    return res.json();
-}
-return Promise.reject(`Error: ${res.status}`);
-  });
+  return this._checkResponse(res);
+  })
+  .catch((err) => {
+      console.error(`Error fetching user info:`, err);
+    });
   }
   
   editAvatarInfo({ avatar }) {
@@ -71,23 +78,23 @@ return Promise.reject(`Error: ${res.status}`);
         avatar
       }),
     }).then((res) => {
-  if (res.ok) {
-    return res.json();
+    return this._checkResponse(res);;
+  })
+  .catch((err) => {
+      console.error(`Error fetching user info:`, err);
+    });
 }
-return Promise.reject(`Error: ${res.status}`);
-  });
-  }
 
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-  if (res.ok) {
-    return res.json();
-}
-return Promise.reject(`Error: ${res.status}`);
-  });
+  return this._checkResponse(res);
+  })
+  .catch((err) => {
+      console.error(`Error fetching user info:`, err);
+    });
   }
 
   changeLikeStatus(id, isLiked) {
@@ -95,11 +102,11 @@ return Promise.reject(`Error: ${res.status}`);
       method: isLiked ? "DELETE": "PUT",
       headers: this._headers,
     }).then((res) => {
-  if (res.ok) {
-    return res.json();
-}
-return Promise.reject(`Error: ${res.status}`);
-  });
+  return this._checkResponse(res);
+  })
+  .catch((err) => {
+      console.error(`Error fetching user info:`, err);
+    });
   }
 }
 
