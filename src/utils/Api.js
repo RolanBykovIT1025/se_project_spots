@@ -14,12 +14,10 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      return this._checkResponse(res);
     })
-    .catch((err) => {
-      console.error(`Error fetching user info:`, err);
-    });
+      .then((res) => {
+        return this._checkResponse(res);
+      });
   }
 
   getAppInfo() {
@@ -28,31 +26,27 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-  headers: this._headers,
-}).then((res) => {
-  return this._checkResponse(res);
-  })
-  .catch((err) => {
-      console.error(`Error fetching user info:`, err);
-    });
+      headers: this._headers,
+    })
+      .then((res) => {
+        return this._checkResponse(res);
+      });
   }
 
- addCard({ name, link, alt }) {
-  return fetch(`${this._baseUrl}/cards`, {
-    method: "POST",
-    headers: this._headers,
-    body: JSON.stringify({
-      name,
-      link,
-      alt
-    }),
-  }).then((res) => {
-    return this._checkResponse(res);
-  })
-  .catch((err) => {
-      console.error(`Error fetching user info:`, err);
-    });
-}
+  addCard({ name, link, alt }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link,
+        alt,
+      }),
+    })
+      .then((res) => {
+        return this._checkResponse(res);
+      });
+  }
 
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -62,51 +56,43 @@ class Api {
         name,
         about,
       }),
-    }).then((res) => {
-  return this._checkResponse(res);
-  })
-  .catch((err) => {
-      console.error(`Error fetching user info:`, err);
-    });
+    })
+      .then((res) => {
+        return this._checkResponse(res);
+      });
   }
-  
+
   editAvatarInfo({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar
+        avatar,
       }),
-    }).then((res) => {
-    return this._checkResponse(res);;
-  })
-  .catch((err) => {
-      console.error(`Error fetching user info:`, err);
-    });
-}
+    })
+      .then((res) => {
+        return this._checkResponse(res);
+      });
+  }
 
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-  return this._checkResponse(res);
-  })
-  .catch((err) => {
-      console.error(`Error fetching user info:`, err);
-    });
+    })
+      .then((res) => {
+        return this._checkResponse(res);
+      });
   }
 
   changeLikeStatus(id, isLiked) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-      method: isLiked ? "DELETE": "PUT",
+      method: isLiked ? "DELETE" : "PUT",
       headers: this._headers,
-    }).then((res) => {
-  return this._checkResponse(res);
-  })
-  .catch((err) => {
-      console.error(`Error fetching user info:`, err);
-    });
+    })
+      .then((res) => {
+        return this._checkResponse(res);
+      });
   }
 }
 

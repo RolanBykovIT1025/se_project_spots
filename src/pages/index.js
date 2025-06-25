@@ -110,7 +110,7 @@ function handleAvatarSubmit(evt) {
 
   const submitBtn = evt.submitter;
   setButtonText(submitBtn, true, "Save", "Saving...");
-  
+
   api
     .editAvatarInfo({ avatar: avatarInput.value })
     .then((data) => {
@@ -139,7 +139,7 @@ function handleDeleteSubmit(evt) {
       );
       if (cardElement) {
         cardElement.remove();
-         console.log("Card removed from DOM");
+        console.log("Card removed from DOM");
       }
       closeModal(deleteModal);
     })
@@ -147,7 +147,7 @@ function handleDeleteSubmit(evt) {
       console.error("Delete failed:", err);
     })
     .finally(() => {
-    setButtonText(submitBtn, false, "Delete", "Deleting...");
+      setButtonText(submitBtn, false, "Delete", "Deleting...");
     });
 }
 
@@ -155,17 +155,18 @@ function handleLike(evt, id) {
   const likeButton = evt.target;
   const isLiked = likeButton.classList.contains("card__like-btn_liked");
 
-  api.changeLikeStatus(id, isLiked)
-  .then((updatedCard) => {
-    
-    const likedByUser = updatedCard.isLiked;
+  api
+    .changeLikeStatus(id, isLiked)
+    .then((updatedCard) => {
+      const likedByUser = updatedCard.isLiked;
 
-    if (likedByUser) {
-      likeButton.classList.add("card__like-btn_liked");
-    } else {
-      likeButton.classList.remove("card__like-btn_liked");
-    }
-  })
+      if (likedByUser) {
+        likeButton.classList.add("card__like-btn_liked");
+      } else {
+        likeButton.classList.remove("card__like-btn_liked");
+      }
+    })
+    .catch(console.error);
 }
 
 function getCardElement(data) {
@@ -301,11 +302,12 @@ cardForm.addEventListener("submit", function (evt) {
     link: cardLinkInput.value,
     alt: cardNameInput.value,
   };
-  
+
   const submitBtn = evt.submitter;
   setButtonText(submitBtn, true, "Save", "Saving...");
 
-  api.addCard(item)
+  api
+    .addCard(item)
     .then((newCard) => {
       handleAddCardSubmit(newCard);
     })
