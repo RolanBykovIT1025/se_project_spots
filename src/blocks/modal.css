@@ -10,6 +10,24 @@
   visibility: hidden;
 }
 
+#delete-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__submit-btn.modal__delete-btn {
+  background-color: #ff6565;
+  color: white; 
+  margin-right: 20px;
+}
+
+.modal__submit-btn.modal__cancel-btn {
+  background-color: #fff;
+  color: black;
+  border: 1px solid black;
+}
+
 .modal_opened {
   visibility: visible;
   opacity: 1;
@@ -53,6 +71,10 @@
   opacity: 1;
 }
 
+#delete-form.modal__close-btn:hover {
+  opacity: 40%;
+}
+
 .modal__close-btn_preview {
   background-image: url("../images/close-light.svg");
   top: 0;
@@ -86,6 +108,15 @@
   margin: 0 0 32px;
   font-weight: 500;
   font-size: 32px;
+  line-height: 1;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+.modal__title-delete {
+  margin: 0 0 32px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
   line-height: 1;
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
@@ -134,6 +165,7 @@
   line-height: 16px;
   font-weight: 500;
   font-size: 16px;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
   border: none;
 }
 
